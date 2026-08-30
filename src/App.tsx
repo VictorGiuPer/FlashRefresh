@@ -38,10 +38,13 @@ const gradeLabels: Record<Grade, string> = {
   4: 'Knew it well',
 };
 
+const logoSrc = `${import.meta.env.BASE_URL}flashfresh-logo-marble-v2.png`;
+
 function Wordmark() {
   return (
     <span className="wordmark" aria-label="Flash Refresh">
-      Flash <em>Refresh</em>
+      <img className="brand-logo" src={logoSrc} alt="" aria-hidden="true" />
+      <span>Flash <em>Refresh</em></span>
     </span>
   );
 }
