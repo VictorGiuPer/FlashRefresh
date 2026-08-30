@@ -1,18 +1,6 @@
 {
   "decks": [
     {
-      "id": "behavioral-finance",
-      "name": "Behavioral Finance Essentials"
-    },
-    {
-      "id": "damodaran",
-      "name": "Damodaran Valuation Playlist"
-    },
-    {
-      "id": "french-basics",
-      "name": "French Travel Basics"
-    },
-    {
       "id": "01",
       "name": "PE"
     }
@@ -416,90 +404,6 @@
       "topicTag": "Damodaran S6 — Cost of Debt & Capital",
       "front": "Write out the full WACC formula.",
       "back": "WACC = (%Equity × Cost of Equity) + (%Debt × Cost of Debt × (1 − tax rate)) + (%Preferred × Cost of Preferred). Weights at market value; drop the last term if no preferred stock exists."
-    },
-    {
-      "id": "test-behavioral-004",
-      "deckId": "behavioral-finance",
-      "topicTag": "Cognitive Biases",
-      "front": "What is anchoring?",
-      "back": "Anchoring is relying too heavily on the first number or reference point encountered, even when it has little relevance to the decision."
-    },
-    {
-      "id": "test-behavioral-001",
-      "deckId": "behavioral-finance",
-      "topicTag": "Cognitive Biases",
-      "front": "What is confirmation bias?",
-      "back": "The tendency to seek, interpret, and remember information that supports an existing belief while discounting evidence that challenges it."
-    },
-    {
-      "id": "test-behavioral-002",
-      "deckId": "behavioral-finance",
-      "topicTag": "Decision Making",
-      "front": "How does loss aversion affect investment decisions?",
-      "back": "People typically feel the pain of a loss more strongly than the pleasure of an equivalent gain, which can lead them to hold losing investments too long or avoid sensible risks."
-    },
-    {
-      "id": "test-behavioral-003",
-      "deckId": "behavioral-finance",
-      "topicTag": "Market Psychology",
-      "front": "What is herd behavior in financial markets?",
-      "back": "It is the tendency to follow the actions of a larger group rather than making an independent judgment, sometimes amplifying bubbles and sell-offs."
-    },
-    {
-      "id": "test-damodaran-001",
-      "deckId": "damodaran",
-      "topicTag": "Damodaran S4 — Equity Risk Premiums",
-      "front": "What is the equity risk premium designed to measure?",
-      "back": "The extra return investors demand for holding risky equities instead of a default-free investment."
-    },
-    {
-      "id": "test-damodaran-002",
-      "deckId": "damodaran",
-      "topicTag": "Damodaran S4 — Equity Risk Premiums",
-      "front": "Why should an implied equity risk premium be forward-looking?",
-      "back": "Valuation prices future cash flows. An implied premium reflects current market prices, expected cash flows, and today’s appetite for risk rather than relying only on historical returns."
-    },
-    {
-      "id": "test-damodaran-003",
-      "deckId": "damodaran",
-      "topicTag": "Damodaran S6 — Cost of Capital",
-      "front": "What does beta measure in the standard CAPM?",
-      "back": "Beta measures a company’s exposure to market-wide risk—the portion of risk that cannot be diversified away."
-    },
-    {
-      "id": "test-damodaran-004",
-      "deckId": "damodaran",
-      "topicTag": "Damodaran S9 — Terminal Value",
-      "front": "Why must a stable-growth rate stay below the risk-free rate?",
-      "back": "A company cannot grow faster than the economy forever. Keeping perpetual growth at or below a long-run risk-free rate prevents the terminal value from implying an impossible share of the economy."
-    },
-    {
-      "id": "test-french-002",
-      "deckId": "french-basics",
-      "topicTag": "Getting Around",
-      "front": "How do you ask “Where is the train station?”",
-      "back": "Où est la gare ?"
-    },
-    {
-      "id": "test-french-004",
-      "deckId": "french-basics",
-      "topicTag": "Polite Phrases",
-      "front": "How do you say “Excuse me, I don’t understand”?",
-      "back": "Excusez-moi, je ne comprends pas."
-    },
-    {
-      "id": "test-french-001",
-      "deckId": "french-basics",
-      "topicTag": "Polite Phrases",
-      "front": "How do you say “I would like…” in French?",
-      "back": "Je voudrais…"
-    },
-    {
-      "id": "test-french-003",
-      "deckId": "french-basics",
-      "topicTag": "Restaurants",
-      "front": "What does “L’addition, s’il vous plaît” mean?",
-      "back": "The bill, please."
     }
   ]
 }
