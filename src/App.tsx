@@ -38,7 +38,7 @@ const gradeLabels: Record<Grade, string> = {
   4: 'Knew it well',
 };
 
-const logoSrc = `${import.meta.env.BASE_URL}flashfresh-logo-marble-v2.png`;
+const logoSrc = `${import.meta.env.BASE_URL}flashfresh-logo-marble-v3.png`;
 
 function Wordmark() {
   return (
