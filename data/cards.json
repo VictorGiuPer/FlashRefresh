@@ -1,19 +1,450 @@
 {
   "decks": [
     {
-      "id": "damodaran",
-      "name": "Damodaran Valuation Playlist"
-    },
-    {
       "id": "behavioral-finance",
       "name": "Behavioral Finance Essentials"
     },
     {
+      "id": "damodaran",
+      "name": "Damodaran Valuation Playlist"
+    },
+    {
       "id": "french-basics",
       "name": "French Travel Basics"
+    },
+    {
+      "id": "01",
+      "name": "PE"
     }
   ],
   "cards": [
+    {
+      "id": "57",
+      "deckId": "01",
+      "topicTag": "Alsina Ch1–2 — Value Creation Framework",
+      "front": "At what stages of a deal does \"knowing the guts of the business\" actually need to happen?",
+      "back": "Diligence, the 100-day plan, and continuously through the whole hold period — not a one-time pre-investment exercise. Treating it as diligence-only is the common mistake."
+    },
+    {
+      "id": "56",
+      "deckId": "01",
+      "topicTag": "Alsina Ch1–2 — Value Creation Framework",
+      "front": "When diagnosing where a target's profitability actually comes from, what's the difference between industry effect and firm effect — and why does it change your value-creation thesis?",
+      "back": "Industry effect = profitability from being in a structurally good market. Firm effect = profitability from outperforming peers within that market. If it's mostly industry effect, the play is defensibility (what stops competitors copying you); if it's mostly firm effect, the play is protecting/scaling the specific internal edge."
+    },
+    {
+      "id": "58",
+      "deckId": "01",
+      "topicTag": "Alsina Ch1–2 — Value Creation Framework",
+      "front": "Why does a purpose statement actually matter operationally for a fund like MCP, beyond \"employee morale\"?",
+      "back": "It compresses \"what we optimize for and won't compromise on\" so frontline staff across multiple countries can make consistent decisions without a manager present for every call — a low-bandwidth oversight mechanism, not a motivational poster."
+    },
+    {
+      "id": "51",
+      "deckId": "01",
+      "topicTag": "Damodaran — Synthesis",
+      "front": "Trace the full chain from risk-free rate to a DCF valuation.",
+      "back": "Risk-free rate splits into default spread and base ERP. Default spread → CRP (scaled) and → cost of debt (raw). CRP + base ERP → total ERP, which × beta → cost of equity. Cost of equity + cost of debt, market-weighted → WACC → discounts cash flows in the DCF."
+    },
+    {
+      "id": "50",
+      "deckId": "01",
+      "topicTag": "Damodaran — Synthesis",
+      "front": "What's the difference between the total equity risk premium and the cost of equity?",
+      "back": "The ERP is just a premium — 'stocks here need to pay X points more than a safe bond.' Cost of equity is the full required return: risk-free rate + (beta × that premium). ERP is an ingredient; cost of equity is the finished dish."
+    },
+    {
+      "id": "54",
+      "deckId": "01",
+      "topicTag": "Damodaran — Synthesis",
+      "front": "What's the single discipline that governs every input choice in a valuation?",
+      "back": "Match everything to the cash flows: same currency, same duration, same real-vs-nominal basis, same claim level (firm vs. equity). Mixing any of these is the recurring source of error across all six sessions."
+    },
+    {
+      "id": "52",
+      "deckId": "01",
+      "topicTag": "Damodaran — Synthesis",
+      "front": "Which valuation inputs do you look up vs. calculate vs. judge?",
+      "back": "Look up: risk-free rate, base ERP, peer betas, bond yields. Calculate: CRP, relevered beta, synthetic rating spread, WACC. Judge: which peers, which country data, which capital structure. The formulas are trivial — the estimation is where valuations go wrong."
+    },
+    {
+      "id": "53",
+      "deckId": "01",
+      "topicTag": "Damodaran — Synthesis",
+      "front": "You're valuing a private Moroccan clinic chain. Why use a US Treasury as the risk-free rate rather than a Moroccan bond?",
+      "back": "You pick the reference by CURRENCY, not nationality. Discounting in USD requires a USD risk-free rate, and the US Treasury market is the deepest, longest-duration benchmark. Morocco's own bond is used later — to measure its default spread against that anchor."
+    },
+    {
+      "id": "7",
+      "deckId": "01",
+      "topicTag": "Damodaran S2 — Intrinsic Value",
+      "front": "On the financial balance sheet, what are 'growth assets' and why do they belong there?",
+      "back": "Investments the firm is expected to make in the future — including ones it hasn't conceived of yet. They belong because a business's value includes what it will do, not only what it already owns."
+    },
+    {
+      "id": "2",
+      "deckId": "01",
+      "topicTag": "Damodaran S2 — Intrinsic Value",
+      "front": "There are two ways to adjust a valuation for risk. What are they, and which is standard?",
+      "back": "(1) Raise the discount rate — the standard approach. (2) Lower the cash flows to a 'certainty equivalent' — the guaranteed amount you'd accept instead — then discount at the risk-free rate. Same idea, different lever."
+    },
+    {
+      "id": "5",
+      "deckId": "01",
+      "topicTag": "Damodaran S2 — Intrinsic Value",
+      "front": "What are the two routes to equity value, and what should be true about them?",
+      "back": "(1) Discount cash flows to equity at cost of equity. (2) Value the whole firm at WACC, then subtract debt. Done correctly, both should land on the same number."
+    },
+    {
+      "id": "1",
+      "deckId": "01",
+      "topicTag": "Damodaran S2 — Intrinsic Value",
+      "front": "Why can't intrinsic valuation be used for gold or art?",
+      "back": "Intrinsic value is the present value of expected cash flows. Gold and art generate no cash flows, so there is nothing to discount — their value is purely what someone else will pay."
+    },
+    {
+      "id": "3",
+      "deckId": "01",
+      "topicTag": "Damodaran S2 — Intrinsic Value",
+      "front": "Why does discounting cash flows to EQUITY at WACC overvalue the business?",
+      "back": "WACC is a blended rate that includes cheaper debt. Equity cash flows are riskier than the blend, so applying a rate that's too low inflates their present value."
+    },
+    {
+      "id": "4",
+      "deckId": "01",
+      "topicTag": "Damodaran S2 — Intrinsic Value",
+      "front": "Why does discounting cash flows to the FIRM at the cost of equity undervalue it?",
+      "back": "Firm cash flows belong to both debt and equity holders. Cost of equity is higher than the blended rate those combined cash flows deserve, so discounting too harshly understates value."
+    },
+    {
+      "id": "6",
+      "deckId": "01",
+      "topicTag": "Damodaran S2 — Intrinsic Value",
+      "front": "Why is a cash flow received earlier worth more than the same cash flow received later?",
+      "back": "Money received today can be reinvested and earn a return, so waiting has an opportunity cost. Later cash flows can still win overall — but only if they're large enough to compensate for the delay."
+    },
+    {
+      "id": "11",
+      "deckId": "01",
+      "topicTag": "Damodaran S3 — Risk-Free Rate",
+      "front": "A country's government bond yields 9% but the country isn't AAA-rated. Why can't you use 9% as your risk-free rate, and what do you do?",
+      "back": "That 9% includes compensation for the government's own default risk, so it isn't risk-free. Subtract the country's default spread to strip that out and isolate the true risk-free component."
+    },
+    {
+      "id": "12",
+      "deckId": "01",
+      "topicTag": "Damodaran S3 — Risk-Free Rate",
+      "front": "Faced with several Eurozone government bond rates, which do you pick and why?",
+      "back": "The lowest one. It's the closest to genuinely default-free — every higher rate carries some default risk premium baked in."
+    },
+    {
+      "id": "8",
+      "deckId": "01",
+      "topicTag": "Damodaran S3 — Risk-Free Rate",
+      "front": "On which three dimensions must the risk-free rate match the cash flows?",
+      "back": "Currency (dollar flows → dollar rate), duration (long flows → long-duration rate), and real vs. nominal (real flows → TIPS; nominal flows → standard bond rate)."
+    },
+    {
+      "id": "14",
+      "deckId": "01",
+      "topicTag": "Damodaran S3 — Risk-Free Rate",
+      "front": "Who is the 'marginal investor' and why does it matter?",
+      "back": "The investor setting the stock's price — holds a lot of shares and trades actively. Risk is defined from their perspective, which is why the diversification assumption drives the whole model."
+    },
+    {
+      "id": "13",
+      "deckId": "01",
+      "topicTag": "Damodaran S3 — Risk-Free Rate",
+      "front": "Why does CAPM only care about market risk (beta) and ignore company-specific risk?",
+      "back": "It assumes the marginal investor — the one actually setting prices — is diversified. Company-specific risk washes out across a diversified portfolio, so only risk that can't be diversified away gets priced."
+    },
+    {
+      "id": "10",
+      "deckId": "01",
+      "topicTag": "Damodaran S3 — Risk-Free Rate",
+      "front": "Why does terminal value require the longest-duration risk-free rate available?",
+      "back": "Terminal value assumes cash flows continue indefinitely past the forecast window, so the matching rate must cover the longest horizon you can observe."
+    },
+    {
+      "id": "9",
+      "deckId": "01",
+      "topicTag": "Damodaran S3 — Risk-Free Rate",
+      "front": "Why isn't a 5-year government bond risk-free for a 10-year cash flow?",
+      "back": "Reinvestment risk. At year 5 you'd have to reinvest at whatever rate exists then — unknown today. Risk-free requires no default risk AND no reinvestment risk."
+    },
+    {
+      "id": "26",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "A company earns revenue in Tunisia, Algeria and Morocco. How do you build its country risk exposure?",
+      "back": "Compute each country's CRP separately, weight each by that company's share of revenue from there, and sum into one blended figure — rather than applying a single country's full risk."
+    },
+    {
+      "id": "24",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "How is lambda calculated, and what does it capture?",
+      "back": "% of the firm's revenue earned domestically ÷ % the average firm earns domestically. It captures that a company selling globally is less exposed to its home country's risk than a purely domestic one."
+    },
+    {
+      "id": "18",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "The implied premium is 5.8% while the historical premium you'd normally use is 4.2%. What does that tell you?",
+      "back": "The market is demanding more return than history suggests — so through the historical lens, everything looks cheap. It's a signal about current sentiment, not an arithmetic result."
+    },
+    {
+      "id": "22",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "Walk the Brazil CRP calculation: default spread 1.75%, equity SD 21, bond SD 14, mature ERP 5.8%.",
+      "back": "CRP = 1.75% × (21/14) = 2.63%. Total Brazil ERP = 5.8% + 2.63% = 8.43%. Start with the mature-market premium, scale the default spread, add them."
+    },
+    {
+      "id": "23",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "What are the three ways to assign country risk exposure to a specific company?",
+      "back": "(1) Every company in the country is equally exposed. (2) Exposure mirrors market-risk exposure, so scale by beta. (3) Treat it as a separate factor scaled by lambda — its own exposure weight."
+    },
+    {
+      "id": "16",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "What are the two problems with trusting a historical equity risk premium?",
+      "back": "(1) Noise — it's a long-run average with a large standard error, so the 'true' number could be far from the estimate. (2) Survivorship bias — using US data alone studies the market that happened to win."
+    },
+    {
+      "id": "17",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "What is an implied equity risk premium, and how is it derived?",
+      "back": "The premium the market is currently pricing in. Plug today's index price, expected cash flows (dividends + buybacks) and growth into the perpetuity formula, then solve backward for the required return instead of for price. Subtract the risk-free rate."
+    },
+    {
+      "id": "15",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "What question does the equity risk premium actually answer?",
+      "back": "How much extra return do I need, above a safe bond, before I'll accept stock risk at all? It's a market-wide number, identical across every company in that market."
+    },
+    {
+      "id": "21",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "When building a Country Risk Premium, why scale the default spread by (equity volatility ÷ bond volatility)?",
+      "back": "The default spread is measured from BOND risk. Equity is riskier than debt everywhere, so the raw spread understates the extra risk of holding that country's stocks — the ratio converts a bond-risk number into an equity-risk number."
+    },
+    {
+      "id": "25",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "Which discount-rate inputs are market-wide, and which are company-specific?",
+      "back": "Market-wide (same for every company): risk-free rate and base ERP. Company-specific: beta and default spread. Getting this backwards is a common trap."
+    },
+    {
+      "id": "20",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "Why do bond prices and yields move in opposite directions?",
+      "back": "The future payout is locked by contract. Pay more for that same fixed stream and your return falls; pay less and it rises. Prices adjust so comparable assets end up offering similar returns."
+    },
+    {
+      "id": "19",
+      "deckId": "01",
+      "topicTag": "Damodaran S4 — ERP",
+      "front": "Why does a bond's yield to maturity differ from its coupon rate?",
+      "back": "The coupon is a fixed euro amount set at issuance against the original face value — it never recalculates. YTM reflects what YOU actually earn given the price you paid. They only match if you bought at face value."
+    },
+    {
+      "id": "34",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "Give the unlever and relever formulas.",
+      "back": "Unlevered beta = Levered beta ÷ [1 + (1 − tax rate) × (D/E)]. Relevered beta = Unlevered beta × [1 + (1 − tax rate) × (D/E)]. Peer's D/E to unlever, target's D/E to relever."
+    },
+    {
+      "id": "37",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "If you reject beta as a risk measure, what are the alternatives?",
+      "back": "Sector-average or bottom-up betas (distrust one regression); relative standard deviation (want total risk, not just market risk); accounting-based measures (distrust stock prices); or build qualitative risk into the cash flows instead of the discount rate."
+    },
+    {
+      "id": "30",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "Of the three beta drivers, which needs its own formula — and how are the other two handled?",
+      "back": "Only financial leverage needs a formula (unlever/relever), because each peer carries its own unrelated debt. Business type and cost structure are handled automatically by choosing genuinely same-business peers — they're a sanity check on peer selection, not a separate calculation."
+    },
+    {
+      "id": "31",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "Walk the four steps of building a bottom-up beta.",
+      "back": "(1) Identify the business you're in. (2) Find public peers, pull their regression betas, unlever each, average them. (3) If multiple business lines, weight by revenue. (4) Relever using your target's own D/E."
+    },
+    {
+      "id": "29",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "What are the three fundamental drivers of a company's beta?",
+      "back": "(1) Type of business — more discretionary demand, higher beta. (2) Cost structure — more fixed costs, higher beta. (3) Financial leverage — more debt, higher beta."
+    },
+    {
+      "id": "27",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "What does beta actually measure — and what does it NOT measure?",
+      "back": "How much a stock moves relative to the market (1 = moves with it, 2 = double, 0.5 = half). It does NOT measure total or general riskiness — company-specific risk is assumed diversified away."
+    },
+    {
+      "id": "36",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "Which specific input is the reason you need PUBLICLY traded peers?",
+      "back": "Beta. It requires a traded price series to regress against the market — impossible for a private firm. D/E follows for free from public disclosure, but beta is the binding constraint."
+    },
+    {
+      "id": "35",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "Why can bottom-up beta work for a private company with no share price?",
+      "back": "You never regress anything on the target itself — you borrow observable business risk from public peers and graft your target's own capital structure onto it."
+    },
+    {
+      "id": "33",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "Why does unlevering come before relevering, rather than skipping straight to your target's D/E?",
+      "back": "The peer's raw beta is contaminated by the peer's own financing choice. You must strip that out first to isolate pure business risk, which is the only genuinely transferable part."
+    },
+    {
+      "id": "28",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "Why is a single company's regression beta untrustworthy, even when the regression looks clean?",
+      "back": "It carries a large standard error. Damodaran's Nokia example: Nokia was ~80% of the Finnish index, so regressing it against that index produced a beautiful line that revealed nothing real about risk."
+    },
+    {
+      "id": "32",
+      "deckId": "01",
+      "topicTag": "Damodaran S5 — Betas",
+      "front": "Why is averaging peer betas mathematically more accurate, not just more comfortable?",
+      "back": "Standard error of a bottom-up beta = average standard error across peers ÷ √(number of firms). Individual random errors are unlikely to all point the same way, so noise shrinks as the sample grows."
+    },
+    {
+      "id": "44",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "Book value is a fine proxy for market value of DEBT but not of EQUITY. Why the asymmetry?",
+      "back": "Debt is a fixed obligation with no growth expectations priced in, so the two rarely diverge much. Book equity is just historical cost — it says nothing about future earning power, which is precisely what market equity value reflects."
+    },
+    {
+      "id": "41",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "Country default spread is added RAW to cost of debt, but SCALED for equity's CRP. Why the difference?",
+      "back": "The scaling exists only to convert bond-market risk into equity-market risk. For debt you're already comparing debt to debt, so no conversion is needed — add the raw spread directly."
+    },
+    {
+      "id": "40",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "How do you estimate cost of debt for a company with no bond and no credit rating?",
+      "back": "Build a synthetic rating: interest coverage ratio = EBIT ÷ interest expense, then look that ratio up against a published rating/spread table. Higher coverage → better rating → smaller default spread."
+    },
+    {
+      "id": "46",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "How do you estimate market value of debt when it isn't publicly traded?",
+      "back": "Treat it as a bond: face value = book value of debt, coupon = actual interest expense, maturity = weighted-average maturity, discount rate = your computed pre-tax cost of debt. The present value is your estimate."
+    },
+    {
+      "id": "39",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "What are the three defining features of debt?",
+      "back": "(1) Contractual commitment — must be paid in good times and bad. (2) Tax-deductible. (3) Failure to pay triggers loss of control."
+    },
+    {
+      "id": "42",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "When does a company bear the FULL country default spread vs. only part of it?",
+      "back": "Full spread if it earns all revenue in that one risky country. Proportional if multinational, weighted by where revenue actually comes from — same logic as lambda on the equity side."
+    },
+    {
+      "id": "45",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "When is it actually worth calculating market value of debt properly, rather than using book value?",
+      "back": "Only when you suspect real divergence — e.g. debt locked in years ago at 3% while market rates are now 8%, or very long remaining maturity where small rate gaps compound. Otherwise book value is fine."
+    },
+    {
+      "id": "43",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "Why are WACC weights measured at MARKET value rather than book value?",
+      "back": "Market value reflects what it would actually cost today to buy out the equity and pay off the debt. Book value is stale historical accounting cost, irrelevant to what the capital structure costs right now."
+    },
+    {
+      "id": "38",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "Why does cost of debt skip beta entirely?",
+      "back": "Lenders don't care how the business performs above the minimum needed to pay them — their only real risk is non-payment. Beta measures market sensitivity, which only matters to equity holders whose returns are fully exposed to performance."
+    },
+    {
+      "id": "47",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "Why does preferred stock get its own bucket in the cost of capital?",
+      "back": "It pays a fixed obligation like debt but with NO tax deductibility, and it's ownership like equity but doesn't share the upside. Fits neither cleanly. Its cost is simply the preferred dividend yield."
+    },
+    {
+      "id": "49",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "Why is cost of debt multiplied by (1 − tax rate) in WACC?",
+      "back": "Interest is tax-deductible, so borrowing costs less than the stated rate — the tax shield. This is the structural reason debt is cheaper than equity, and the financial engine behind LBOs."
+    },
+    {
+      "id": "48",
+      "deckId": "01",
+      "topicTag": "Damodaran S6 — Cost of Debt & Capital",
+      "front": "Write out the full WACC formula.",
+      "back": "WACC = (%Equity × Cost of Equity) + (%Debt × Cost of Debt × (1 − tax rate)) + (%Preferred × Cost of Preferred). Weights at market value; drop the last term if no preferred stock exists."
+    },
+    {
+      "id": "test-behavioral-004",
+      "deckId": "behavioral-finance",
+      "topicTag": "Cognitive Biases",
+      "front": "What is anchoring?",
+      "back": "Anchoring is relying too heavily on the first number or reference point encountered, even when it has little relevance to the decision."
+    },
+    {
+      "id": "test-behavioral-001",
+      "deckId": "behavioral-finance",
+      "topicTag": "Cognitive Biases",
+      "front": "What is confirmation bias?",
+      "back": "The tendency to seek, interpret, and remember information that supports an existing belief while discounting evidence that challenges it."
+    },
+    {
+      "id": "test-behavioral-002",
+      "deckId": "behavioral-finance",
+      "topicTag": "Decision Making",
+      "front": "How does loss aversion affect investment decisions?",
+      "back": "People typically feel the pain of a loss more strongly than the pleasure of an equivalent gain, which can lead them to hold losing investments too long or avoid sensible risks."
+    },
+    {
+      "id": "test-behavioral-003",
+      "deckId": "behavioral-finance",
+      "topicTag": "Market Psychology",
+      "front": "What is herd behavior in financial markets?",
+      "back": "It is the tendency to follow the actions of a larger group rather than making an independent judgment, sometimes amplifying bubbles and sell-offs."
+    },
     {
       "id": "test-damodaran-001",
       "deckId": "damodaran",
@@ -43,32 +474,18 @@
       "back": "A company cannot grow faster than the economy forever. Keeping perpetual growth at or below a long-run risk-free rate prevents the terminal value from implying an impossible share of the economy."
     },
     {
-      "id": "test-behavioral-001",
-      "deckId": "behavioral-finance",
-      "topicTag": "Cognitive Biases",
-      "front": "What is confirmation bias?",
-      "back": "The tendency to seek, interpret, and remember information that supports an existing belief while discounting evidence that challenges it."
+      "id": "test-french-002",
+      "deckId": "french-basics",
+      "topicTag": "Getting Around",
+      "front": "How do you ask “Where is the train station?”",
+      "back": "Où est la gare ?"
     },
     {
-      "id": "test-behavioral-002",
-      "deckId": "behavioral-finance",
-      "topicTag": "Decision Making",
-      "front": "How does loss aversion affect investment decisions?",
-      "back": "People typically feel the pain of a loss more strongly than the pleasure of an equivalent gain, which can lead them to hold losing investments too long or avoid sensible risks."
-    },
-    {
-      "id": "test-behavioral-003",
-      "deckId": "behavioral-finance",
-      "topicTag": "Market Psychology",
-      "front": "What is herd behavior in financial markets?",
-      "back": "It is the tendency to follow the actions of a larger group rather than making an independent judgment, sometimes amplifying bubbles and sell-offs."
-    },
-    {
-      "id": "test-behavioral-004",
-      "deckId": "behavioral-finance",
-      "topicTag": "Cognitive Biases",
-      "front": "What is anchoring?",
-      "back": "Anchoring is relying too heavily on the first number or reference point encountered, even when it has little relevance to the decision."
+      "id": "test-french-004",
+      "deckId": "french-basics",
+      "topicTag": "Polite Phrases",
+      "front": "How do you say “Excuse me, I don’t understand”?",
+      "back": "Excusez-moi, je ne comprends pas."
     },
     {
       "id": "test-french-001",
@@ -78,25 +495,11 @@
       "back": "Je voudrais…"
     },
     {
-      "id": "test-french-002",
-      "deckId": "french-basics",
-      "topicTag": "Getting Around",
-      "front": "How do you ask “Where is the train station?”",
-      "back": "Où est la gare ?"
-    },
-    {
       "id": "test-french-003",
       "deckId": "french-basics",
       "topicTag": "Restaurants",
       "front": "What does “L’addition, s’il vous plaît” mean?",
       "back": "The bill, please."
-    },
-    {
-      "id": "test-french-004",
-      "deckId": "french-basics",
-      "topicTag": "Polite Phrases",
-      "front": "How do you say “Excuse me, I don’t understand”?",
-      "back": "Excusez-moi, je ne comprends pas."
     }
   ]
 }
