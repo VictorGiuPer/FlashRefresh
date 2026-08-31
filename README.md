@@ -1,6 +1,6 @@
 # Flash Refresh
 
-Flash Refresh is a private, mobile-first flashcard PWA. Card content is read-only and comes from `data/cards.json`; study progress stays on the current device in browser storage.
+Flash Refresh is a private, mobile-first flashcard PWA. Card content is read-only and comes from individual JSON files in `data/decks/`; study progress stays on the current device in browser storage.
 
 ## One-time GitHub Pages setup
 
@@ -33,21 +33,21 @@ Do these steps once. Afterward, every push to `main` publishes the latest app an
 
 6. Return to **Settings → Pages**. GitHub shows the live site address there. Open that address on your phone and use the browser’s **Add to Home Screen** action to install the PWA.
 
-7. That is the last manual deployment step. Every later push to `main`—including a future Notion sync that updates `data/cards.json`—builds and publishes automatically.
+7. That is the last manual deployment step. Every later push to `main`—including a future Notion sync that updates a deck file—builds and publishes automatically.
 
 ## Card library contract
 
-The app reads this exact shape from `data/cards.json` at runtime:
+Each `.json` file directly inside `data/decks/` is one deck. The app discovers those files automatically at development and build time, so adding a valid file adds a deck without updating an index or application code. File names are only for readability; the JSON `id` is the permanent deck identifier.
+
+Use this exact shape for each deck file, for example `data/decks/damodaran.json`:
 
 ```json
 {
-  "decks": [
-    { "id": "damodaran", "name": "Damodaran Valuation Playlist" }
-  ],
+  "id": "damodaran",
+  "name": "Damodaran Valuation Playlist",
   "cards": [
     {
       "id": "<stable Notion page id>",
-      "deckId": "damodaran",
       "topicTag": "Damodaran S4 — Equity Risk Premiums",
       "front": "...",
       "back": "..."
@@ -56,15 +56,13 @@ The app reads this exact shape from `data/cards.json` at runtime:
 }
 ```
 
+The containing deck file supplies `deckId`; do not add `deckId` to individual cards. The build rejects malformed files, duplicate deck IDs, and duplicate card IDs, leaving the last deployed version live if a content edit is invalid.
+
 > **Critical for the future Notion automation:** `card.id` must always be the permanent Notion page ID. Never generate new IDs during a sync. Progress is stored by `card.id`, so changing IDs silently makes existing progress appear lost.
 
-The repository currently includes a small sample library so the interface and study loop are easy to review before deployment. Replace it with the generated Notion export when the sync is ready. The empty production shape is:
+The repository currently includes a small sample deck so the interface and study loop are easy to review before deployment. Replace it with generated deck files when the sync is ready. An empty `data/decks/` directory represents an empty library.
 
-```json
-{ "decks": [], "cards": [] }
-```
-
-Content updates may replace this file, but must not write to or depend on the app’s local progress data.
+Content updates may add, replace, or remove deck files, but must not write to or depend on the app’s local progress data.
 
 The copy-ready ChatGPT export task and stable-ID rules are in [`NOTION_SYNC_AUTOMATION.md`](./NOTION_SYNC_AUTOMATION.md). ChatGPT's connected GitHub app is read-only, so a truly unattended Notion-to-repository sync needs a GitHub Action with Notion credentials; the ChatGPT task can prepare and validate the export but cannot push it.
 
