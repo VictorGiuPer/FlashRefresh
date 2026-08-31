@@ -2,6 +2,7 @@ import {
   Check,
   ChevronDown,
   ChevronRight,
+  Flame,
   Layers3,
   List,
   Search,
@@ -16,9 +17,9 @@ import {
   useState,
 } from 'react';
 import { fetchContent } from './lib/content';
-import { buildQueue, dueCount, gradeCard, selectDefaultDeck } from './lib/scheduler';
-import { loadAppState, loadProgress, saveAppState, saveProgress } from './lib/storage';
-import type { Card, ContentData, Deck, Grade, ProgressMap, SessionStats } from './types';
+import { addDays, buildQueue, completeDeckStreak, dueCount, dueCountOnDate, gradeCard, selectDefaultDeck, toLocalDateString, visibleStreak } from './lib/scheduler';
+import { loadAppState, loadDeckStreaks, loadProgress, saveAppState, saveDeckStreaks, saveProgress } from './lib/storage';
+import type { Card, ContentData, Deck, DeckStreakMap, Grade, ProgressMap, SessionStats } from './types';
 
 type Tab = 'learn' | 'manage';
 
@@ -146,12 +147,12 @@ function StudyCard({
   card,
   flipped,
   leaving,
-  onFlip,
+  onToggleFace,
 }: {
   card: Card;
   flipped: boolean;
   leaving: boolean;
-  onFlip: () => void;
+  onToggleFace: () => void;
 }) {
   const pointerStart = useRef<{ x: number; y: number } | null>(null);
   const ignoreClick = useRef(false);
@@ -161,13 +162,15 @@ function StudyCard({
   };
 
   const onPointerUp = (event: ReactPointerEvent<HTMLButtonElement>) => {
-    if (!pointerStart.current || flipped) return;
+    if (!pointerStart.current) return;
     const deltaX = event.clientX - pointerStart.current.x;
     const deltaY = event.clientY - pointerStart.current.y;
     pointerStart.current = null;
-    if (deltaY < -48 && Math.abs(deltaX) < 72) {
+    const revealsBack = !flipped && deltaY < -48;
+    const returnsFront = flipped && deltaY > 48;
+    if ((revealsBack || returnsFront) && Math.abs(deltaX) < 72) {
       ignoreClick.current = true;
-      onFlip();
+      onToggleFace();
     }
   };
 
@@ -176,7 +179,7 @@ function StudyCard({
       ignoreClick.current = false;
       return;
     }
-    if (!flipped) onFlip();
+    onToggleFace();
   };
 
   return (
@@ -186,7 +189,7 @@ function StudyCard({
       onClick={onClick}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
-      aria-label={flipped ? 'Answer revealed' : 'Reveal answer'}
+      aria-label={flipped ? 'Show question' : 'Show answer'}
     >
       <span className={`card-inner${flipped ? ' flipped' : ''}`}>
         <span className="card-face card-front">
@@ -198,6 +201,7 @@ function StudyCard({
           <span className="face-label"><b>B</b>ack</span>
           <span className="card-copy answer">{card.back}</span>
           <span className="topic-chip">{card.topicTag}</span>
+          <span className="flip-hint">Tap or swipe down to return</span>
         </span>
       </span>
     </button>
@@ -208,17 +212,21 @@ function LearnView({
   content,
   selectedDeckId,
   sessions,
+  progress,
+  streaks,
   leaving,
   onOpenDecks,
-  onFlip,
+  onToggleFace,
   onGrade,
 }: {
   content: ContentData;
   selectedDeckId: string | null;
   sessions: Record<string, DeckSession>;
+  progress: ProgressMap;
+  streaks: DeckStreakMap;
   leaving: boolean;
   onOpenDecks: () => void;
-  onFlip: () => void;
+  onToggleFace: () => void;
   onGrade: (grade: Grade) => void;
 }) {
   if (!content.decks.length) return <EmptyState message="No cards yet — waiting on the next sync." />;
@@ -232,11 +240,19 @@ function LearnView({
   const reviewed = Object.values(session.stats).reduce((sum, count) => sum + count, 0);
   const position = complete ? session.queue.length : session.index + 1;
   const progressPercent = session.queue.length ? (position / session.queue.length) * 100 : 100;
+  const streak = visibleStreak(streaks[deck.id]);
+  const tomorrowCount = dueCountOnDate(content.cards, progress, deck.id, addDays(toLocalDateString(), 1));
 
   return (
     <section className="screen learn-screen" aria-labelledby="learn-title">
-      <header className="app-header">
-        <h1 id="learn-title"><Wordmark /></h1>
+      <header className="app-header learn-header">
+        <div className="learn-brand-row">
+          <h1 id="learn-title"><Wordmark /></h1>
+          <span className="streak-indicator" aria-label={`${streak}-day streak for ${deck.name}`}>
+            <Flame aria-hidden="true" size={21} strokeWidth={1.5} />
+            <b>{streak}</b>
+          </span>
+        </div>
         <button className="deck-pill glass" type="button" onClick={onOpenDecks}>
           <span>{deck.name}</span>
           <ChevronDown aria-hidden="true" size={16} strokeWidth={1.5} />
@@ -252,7 +268,7 @@ function LearnView({
           <div className="progress-track" aria-hidden="true">
             <span style={{ width: `${progressPercent}%` }} />
           </div>
-          <StudyCard card={currentCard} flipped={session.flipped} leaving={leaving} onFlip={onFlip} />
+          <StudyCard card={currentCard} flipped={session.flipped} leaving={leaving} onToggleFace={onToggleFace} />
           <div className={`grade-grid${session.flipped ? ' visible' : ''}`} aria-hidden={!session.flipped}>
             {([1, 2, 3, 4] as Grade[]).map((grade) => (
               <button type="button" key={grade} disabled={!session.flipped || leaving} onClick={() => onGrade(grade)}>
@@ -269,6 +285,7 @@ function LearnView({
           <p className="eyebrow">{deck.name}</p>
           <h2>All caught up</h2>
           <p>{reviewed ? `${reviewed} card${reviewed === 1 ? '' : 's'} reviewed this session.` : 'Nothing is due in this deck.'}</p>
+          <p className="tomorrow-forecast">Tomorrow: {tomorrowCount} card{tomorrowCount === 1 ? '' : 's'} due.</p>
           {reviewed > 0 && (
             <div className="session-summary" aria-label="Session results">
               {([1, 2, 3, 4] as Grade[]).map((grade) => (
@@ -366,12 +383,14 @@ function ManageView({ content, selectedDeckId, progress }: { content: ContentDat
                       <button className={`card-row${cardExpanded ? ' expanded' : ''}`} type="button" key={card.id} onClick={() => toggleCard(card.id)} aria-expanded={cardExpanded}>
                         <span className="card-row-top">
                           <span className="card-row-front">{card.front}</span>
-                          <span className="card-row-tags">
+                        </span>
+                        {cardExpanded && (
+                          <span className="card-row-detail">
                             {needsAttention && <span className="attention-chip">Needs attention</span>}
                             <span className="topic-chip">{card.topicTag}</span>
+                            <span className="card-row-back">{card.back}</span>
                           </span>
-                        </span>
-                        {cardExpanded && <span className="card-row-back">{card.back}</span>}
+                        )}
                       </button>
                     );
                   })}
@@ -390,6 +409,7 @@ export function App() {
   const [content, setContent] = useState<ContentData | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [progress, setProgress] = useState<ProgressMap>(() => loadProgress());
+  const [streaks, setStreaks] = useState<DeckStreakMap>(() => loadDeckStreaks());
   const [selectedDeckId, setSelectedDeckId] = useState<string | null>(null);
   const [sessions, setSessions] = useState<Record<string, DeckSession>>({});
   const [deckSheetOpen, setDeckSheetOpen] = useState(false);
@@ -444,7 +464,7 @@ export function App() {
       : current);
   };
 
-  const flipCard = () => updateSession((session) => ({ ...session, flipped: true }));
+  const toggleCardFace = () => updateSession((session) => ({ ...session, flipped: !session.flipped }));
 
   const recordGrade = (grade: Grade) => {
     if (!selectedDeckId || !selectedSession || leaving) return;
@@ -455,6 +475,14 @@ export function App() {
     const nextProgress = { ...progress, [card.id]: entry };
     setProgress(nextProgress);
     saveProgress(nextProgress);
+    if (selectedSession.queue.length > 0 && selectedSession.index + 1 === selectedSession.queue.length) {
+      const nextStreaks = {
+        ...streaks,
+        [selectedDeckId]: completeDeckStreak(streaks[selectedDeckId]),
+      };
+      setStreaks(nextStreaks);
+      saveDeckStreaks(nextStreaks);
+    }
     setLeaving(true);
     transitionTimer.current = window.setTimeout(() => {
       updateSession((session) => ({
@@ -504,9 +532,11 @@ export function App() {
             content={content!}
             selectedDeckId={selectedDeckId}
             sessions={sessions}
+            progress={progress}
+            streaks={streaks}
             leaving={leaving}
             onOpenDecks={openDeckSheet}
-            onFlip={flipCard}
+            onToggleFace={toggleCardFace}
             onGrade={recordGrade}
           />
         </div>

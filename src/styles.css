@@ -75,6 +75,17 @@ button:disabled { cursor: default; }
 .screen { min-height: calc(100dvh - 140px); }
 .app-header { display: grid; gap: 18px; }
 .app-header h1 { margin: 0; line-height: 1; }
+.learn-brand-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.streak-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1;
+}
+.streak-indicator b { font-weight: 500; }
 .wordmark {
   display: inline-flex;
   align-items: center;
@@ -300,6 +311,11 @@ button:disabled { cursor: default; }
   font-style: italic;
   line-height: 1.45;
 }
+.completion-state > .tomorrow-forecast {
+  margin-top: 14px;
+  color: var(--color-charcoal);
+  font-size: 14px;
+}
 .session-summary {
   width: 100%;
   display: grid;
@@ -388,9 +404,9 @@ button:disabled { cursor: default; }
 }
 .card-row:last-child { border-bottom: 0; }
 .card-row.expanded { background: rgba(242, 236, 229, 0.36); }
-.card-row-top { display: flex; align-items: center; gap: 12px; }
-.card-row-front { min-width: 0; flex: 1; overflow: hidden; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
-.card-row-tags { max-width: 46%; flex: 0 1 auto; display: grid; justify-items: end; gap: 5px; }
+.card-row-top { display: block; }
+.card-row-front { display: block; font-size: 14px; line-height: 1.5; white-space: pre-wrap; }
+.card-row-detail { display: grid; justify-items: start; gap: 9px; margin-top: 14px; }
 .card-row .topic-chip { max-width: 100%; }
 .attention-chip {
   display: inline-flex;
@@ -403,7 +419,7 @@ button:disabled { cursor: default; }
   line-height: 1;
   white-space: nowrap;
 }
-.card-row-back { display: block; margin-top: 14px; color: #5f5f5c; font-size: 13px; line-height: 1.55; white-space: pre-wrap; }
+.card-row-back { display: block; color: #5f5f5c; font-size: 13px; line-height: 1.55; white-space: pre-wrap; }
 .deck-empty { margin: 0; padding: 20px 18px; color: var(--color-stone); font-family: var(--font-serif); font-size: 14px; font-style: italic; }
 .no-results { min-height: 48dvh; }
 .no-results h2 { font-size: 30px; }

@@ -89,6 +89,7 @@ npm run preview
 
 - `flashRefresh.progress` contains progress keyed by stable card ID.
 - A card is marked **Needs attention** in Manage after two consecutive **Didn't know it** grades. Any other grade clears that streak.
+- `flashRefresh.deckStreaks` stores each deck’s study streak on this device. A day counts only after every card due in that deck’s session is graded; missing a day resets the displayed streak.
 - `flashRefresh.appState` contains the last selected deck.
 - Progress is local to the current browser/device and is never sent anywhere.
 - Removed cards leave harmless orphaned progress entries; newly synced cards are immediately due.

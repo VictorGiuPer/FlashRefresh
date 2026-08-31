@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { validateContentData } from '../src/lib/content';
-import { parseAppState, parseProgress } from '../src/lib/storage';
+import { parseAppState, parseDeckStreaks, parseProgress } from '../src/lib/storage';
 
 describe('content validation', () => {
   it('keeps valid unique records and ignores cards with missing decks', () => {
@@ -45,5 +45,14 @@ describe('local storage recovery', () => {
   it('accepts the exact persisted app state shape', () => {
     expect(parseAppState('{"lastSelectedDeckId":"deck"}')).toEqual({ lastSelectedDeckId: 'deck' });
     expect(parseAppState('{"lastSelectedDeckId":42}')).toEqual({ lastSelectedDeckId: null });
+  });
+
+  it('keeps valid deck streaks and ignores malformed entries', () => {
+    expect(parseDeckStreaks('{broken')).toEqual({});
+    expect(parseDeckStreaks(JSON.stringify({
+      deck: { count: 4, lastCompletedDate: '2026-08-30' },
+      invalidCount: { count: 0, lastCompletedDate: '2026-08-30' },
+      invalidDate: { count: 2, lastCompletedDate: 'tomorrow' },
+    }))).toEqual({ deck: { count: 4, lastCompletedDate: '2026-08-30' } });
   });
 });

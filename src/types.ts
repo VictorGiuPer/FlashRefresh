@@ -30,6 +30,13 @@ export type CardProgress = {
 
 export type ProgressMap = Record<string, CardProgress>;
 
+export type DeckStreak = {
+  count: number;
+  lastCompletedDate: string;
+};
+
+export type DeckStreakMap = Record<string, DeckStreak>;
+
 export type AppState = {
   lastSelectedDeckId: string | null;
 };

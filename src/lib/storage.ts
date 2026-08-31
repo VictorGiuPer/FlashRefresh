@@ -1,7 +1,8 @@
-import type { AppState, CardProgress, Grade, ProgressMap } from '../types';
+import type { AppState, CardProgress, DeckStreak, DeckStreakMap, Grade, ProgressMap } from '../types';
 
 export const PROGRESS_KEY = 'flashRefresh.progress';
 export const APP_STATE_KEY = 'flashRefresh.appState';
+export const DECK_STREAKS_KEY = 'flashRefresh.deckStreaks';
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -52,6 +53,26 @@ export function parseAppState(raw: string | null): AppState {
   return { lastSelectedDeckId: null };
 }
 
+function isDeckStreak(value: unknown): value is DeckStreak {
+  return isRecord(value) &&
+    Number.isInteger(value.count) && Number(value.count) > 0 &&
+    typeof value.lastCompletedDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value.lastCompletedDate);
+}
+
+export function parseDeckStreaks(raw: string | null): DeckStreakMap {
+  if (!raw) return {};
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (!isRecord(parsed)) return {};
+    return Object.entries(parsed).reduce<DeckStreakMap>((valid, [deckId, value]) => {
+      if (isDeckStreak(value)) valid[deckId] = value;
+      return valid;
+    }, {});
+  } catch {
+    return {};
+  }
+}
+
 export function loadProgress(): ProgressMap {
   try { return parseProgress(localStorage.getItem(PROGRESS_KEY)); } catch { return {}; }
 }
@@ -60,10 +81,18 @@ export function loadAppState(): AppState {
   try { return parseAppState(localStorage.getItem(APP_STATE_KEY)); } catch { return { lastSelectedDeckId: null }; }
 }
 
+export function loadDeckStreaks(): DeckStreakMap {
+  try { return parseDeckStreaks(localStorage.getItem(DECK_STREAKS_KEY)); } catch { return {}; }
+}
+
 export function saveProgress(progress: ProgressMap): void {
   try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress)); } catch { /* Continue in memory. */ }
 }
 
 export function saveAppState(state: AppState): void {
   try { localStorage.setItem(APP_STATE_KEY, JSON.stringify(state)); } catch { /* Continue in memory. */ }
+}
+
+export function saveDeckStreaks(streaks: DeckStreakMap): void {
+  try { localStorage.setItem(DECK_STREAKS_KEY, JSON.stringify(streaks)); } catch { /* Continue in memory. */ }
 }

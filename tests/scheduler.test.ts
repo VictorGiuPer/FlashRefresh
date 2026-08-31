@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addDays, buildQueue, calculateInterval, gradeCard, isDue, selectDefaultDeck, toLocalDateString } from '../src/lib/scheduler';
+import { addDays, buildQueue, calculateInterval, completeDeckStreak, dueCountOnDate, gradeCard, isDue, selectDefaultDeck, toLocalDateString, visibleStreak } from '../src/lib/scheduler';
 import type { Card, CardProgress, Deck, ProgressMap } from '../src/types';
 
 const cards: Card[] = [
@@ -65,6 +65,15 @@ describe('queues and deck selection', () => {
     expect(isDue(progress.future, '2026-08-30')).toBe(false);
   });
 
+  it('counts cards scheduled for one exact local date, not overdue or new cards', () => {
+    const progress: ProgressMap = {
+      'old-1': progressEntry('old-1', '2026-08-31'),
+      'old-2': progressEntry('old-2', '2026-09-01'),
+      future: progressEntry('future', '2026-09-02'),
+    };
+    expect(dueCountOnDate(cards, progress, 'deck', '2026-09-01')).toBe(1);
+  });
+
   it('keeps source order for new cards and equal due dates', () => {
     const sameDayCards = [cards[1], cards[2], cards[0]];
     const progress: ProgressMap = {
@@ -79,5 +88,23 @@ describe('queues and deck selection', () => {
     expect(selectDefaultDeck(decks, 'z')).toBe('z');
     expect(selectDefaultDeck(decks, 'removed')).toBe('a');
     expect(selectDefaultDeck([], null)).toBeNull();
+  });
+});
+
+describe('deck streaks', () => {
+  it('starts at one, grows only on consecutive days, and remains steady within a day', () => {
+    const first = completeDeckStreak(undefined, '2026-08-30');
+    const sameDay = completeDeckStreak(first, '2026-08-30');
+    const nextDay = completeDeckStreak(first, '2026-08-31');
+    expect(first).toEqual({ count: 1, lastCompletedDate: '2026-08-30' });
+    expect(sameDay).toEqual(first);
+    expect(nextDay).toEqual({ count: 2, lastCompletedDate: '2026-08-31' });
+  });
+
+  it('shows zero after a missed day and resets the next qualifying completion', () => {
+    const stale = { count: 5, lastCompletedDate: '2026-08-28' };
+    expect(visibleStreak(stale, '2026-08-30')).toBe(0);
+    expect(completeDeckStreak(stale, '2026-08-30')).toEqual({ count: 1, lastCompletedDate: '2026-08-30' });
+    expect(visibleStreak({ count: 2, lastCompletedDate: '2026-08-29' }, '2026-08-30')).toBe(2);
   });
 });

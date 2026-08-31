@@ -1,4 +1,4 @@
-import type { Card, CardProgress, Deck, Grade, ProgressMap } from '../types';
+import type { Card, CardProgress, Deck, DeckStreak, Grade, ProgressMap } from '../types';
 
 export function toLocalDateString(date = new Date()): string {
   const year = date.getFullYear();
@@ -65,6 +65,25 @@ export function buildQueue(
 
 export function dueCount(cards: Card[], progress: ProgressMap, deckId: string, today = toLocalDateString()): number {
   return cards.filter((card) => card.deckId === deckId && isDue(progress[card.id], today)).length;
+}
+
+export function dueCountOnDate(cards: Card[], progress: ProgressMap, deckId: string, date: string): number {
+  return cards.filter((card) => card.deckId === deckId && progress[card.id]?.dueDate === date).length;
+}
+
+export function visibleStreak(streak: DeckStreak | undefined, today = toLocalDateString()): number {
+  if (!streak) return 0;
+  const yesterday = addDays(today, -1);
+  return streak.lastCompletedDate === today || streak.lastCompletedDate === yesterday ? streak.count : 0;
+}
+
+export function completeDeckStreak(streak: DeckStreak | undefined, today = toLocalDateString()): DeckStreak {
+  if (streak?.lastCompletedDate === today) return streak;
+  const yesterday = addDays(today, -1);
+  return {
+    count: streak?.lastCompletedDate === yesterday ? streak.count + 1 : 1,
+    lastCompletedDate: today,
+  };
 }
 
 export function selectDefaultDeck(decks: Deck[], lastSelectedDeckId: string | null): string | null {
