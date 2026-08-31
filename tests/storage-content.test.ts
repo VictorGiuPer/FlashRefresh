@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { validateContentData } from '../src/lib/content';
+import { validateContentData, validateDeckFiles } from '../src/lib/content';
 import { parseAppState, parseDeckStreaks, parseProgress } from '../src/lib/storage';
 
 describe('content validation', () => {
@@ -17,6 +17,27 @@ describe('content validation', () => {
 
   it('rejects a malformed root contract', () => {
     expect(() => validateContentData({ cards: [] })).toThrow();
+  });
+
+  it('merges deck files and derives each card deck ID', () => {
+    const data = validateDeckFiles([
+      { id: 'one', name: 'One', cards: [{ id: 'card-one', topicTag: 'Topic', front: 'Front', back: 'Back' }] },
+      { id: 'two', name: 'Two', cards: [{ id: 'card-two', topicTag: 'Topic', front: 'Front', back: 'Back' }] },
+    ]);
+    expect(data.decks.map((deck) => deck.id)).toEqual(['one', 'two']);
+    expect(data.cards).toMatchObject([{ id: 'card-one', deckId: 'one' }, { id: 'card-two', deckId: 'two' }]);
+  });
+
+  it('rejects malformed deck files and duplicate IDs', () => {
+    expect(() => validateDeckFiles([{ id: 'one', name: 'One', cards: [{ id: 'card', topicTag: '', front: 'Front', back: 'Back' }] }])).toThrow();
+    expect(() => validateDeckFiles([
+      { id: 'one', name: 'One', cards: [] },
+      { id: 'one', name: 'Duplicate', cards: [] },
+    ])).toThrow();
+    expect(() => validateDeckFiles([
+      { id: 'one', name: 'One', cards: [{ id: 'card', topicTag: 'Topic', front: 'Front', back: 'Back' }] },
+      { id: 'two', name: 'Two', cards: [{ id: 'card', topicTag: 'Topic', front: 'Front', back: 'Back' }] },
+    ])).toThrow();
   });
 });
 

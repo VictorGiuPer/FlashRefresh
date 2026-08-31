@@ -1,28 +1,69 @@
 import { sites } from '@openai/sites-vite-plugin';
 import tailwindcss from '@tailwindcss/postcss';
 import react from '@vitejs/plugin-react';
-import { readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { validateDeckFiles } from './src/lib/content.ts';
 
 const basePath = process.env.VITE_BASE_PATH || '/';
-const cardsPath = resolve(process.cwd(), 'data/cards.json');
+const decksDirectory = resolve(process.cwd(), 'data/decks');
 
-function runtimeCardsPlugin(): Plugin {
+type DeckAsset = {
+  fileName: string;
+  source: string;
+};
+
+function readDeckAssets(): DeckAsset[] {
+  if (!existsSync(decksDirectory)) throw new Error('The data/decks directory is missing.');
+
+  const assets = readdirSync(decksDirectory, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
+    .map((entry) => ({ fileName: entry.name, source: readFileSync(resolve(decksDirectory, entry.name), 'utf8') }))
+    .sort((left, right) => left.fileName.localeCompare(right.fileName));
+
+  const parsed = assets.map(({ fileName, source }) => {
+    try {
+      return JSON.parse(source) as unknown;
+    } catch {
+      throw new Error(`Deck file ${fileName} is not valid JSON.`);
+    }
+  });
+  validateDeckFiles(parsed);
+  return assets;
+}
+
+function manifestSource(assets: DeckAsset[]): string {
+  return `${JSON.stringify({ files: assets.map(({ fileName }) => `data/decks/${fileName}`) }, null, 2)}\n`;
+}
+
+function runtimeDecksPlugin(): Plugin {
   return {
-    name: 'flash-refresh-runtime-cards',
+    name: 'flash-refresh-runtime-decks',
     configureServer(server) {
       server.middlewares.use((request, response, next) => {
         const pathname = new URL(request.url ?? '/', 'http://flash-refresh.local').pathname;
-        if (!pathname.endsWith('/data/cards.json')) return next();
+        if (!pathname.endsWith('/data/decks.json') && !pathname.includes('/data/decks/')) return next();
+        const assets = readDeckAssets();
+        const requestedFile = pathname.split('/data/decks/')[1];
+        const asset = requestedFile ? assets.find(({ fileName }) => fileName === decodeURIComponent(requestedFile)) : undefined;
+        if (requestedFile && !asset) {
+          response.statusCode = 404;
+          response.end();
+          return;
+        }
         response.setHeader('Content-Type', 'application/json; charset=utf-8');
         response.setHeader('Cache-Control', 'no-cache');
-        response.end(readFileSync(cardsPath));
+        response.end(asset?.source ?? manifestSource(assets));
       });
     },
     generateBundle() {
-      this.emitFile({ type: 'asset', fileName: 'data/cards.json', source: readFileSync(cardsPath) });
+      const assets = readDeckAssets();
+      this.emitFile({ type: 'asset', fileName: 'data/decks.json', source: manifestSource(assets) });
+      assets.forEach(({ fileName, source }) => {
+        this.emitFile({ type: 'asset', fileName: `data/decks/${fileName}`, source });
+      });
     },
   };
 }
@@ -44,7 +85,7 @@ export default defineConfig({
   css: { postcss: { plugins: [tailwindcss()] } },
   plugins: [
     react(),
-    runtimeCardsPlugin(),
+    runtimeDecksPlugin(),
     socialMetadataPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
@@ -69,16 +110,18 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{html,js,css,png,woff2}'],
-        globIgnores: ['data/cards.json', 'og.png'],
+        globIgnores: ['data/decks.json', 'data/decks/*.json', 'og.png'],
         cleanupOutdatedCaches: true,
         runtimeCaching: [
           {
-            urlPattern: ({ request, url }) => request.method === 'GET' && url.pathname.endsWith('/data/cards.json'),
-            handler: 'StaleWhileRevalidate',
+            urlPattern: ({ request, url }) => request.method === 'GET' && (
+              url.pathname.endsWith('/data/decks.json') || /\/data\/decks\/[^/]+\.json$/.test(url.pathname)
+            ),
+            handler: 'NetworkFirst',
             options: {
-              cacheName: 'flash-refresh-cards',
+              cacheName: 'flash-refresh-decks',
               cacheableResponse: { statuses: [0, 200] },
-              expiration: { maxEntries: 1, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              expiration: { maxEntries: 100, maxAgeSeconds: 60 * 60 * 24 * 365 },
             },
           },
         ],
