@@ -39,6 +39,48 @@
       "back": "Entrenched incumbents are often unsuited to the specific value-creation plan being executed — being good at running the old way isn't the same as being right for the new direction. Bringing in outside talent is a legitimate reset, not a failure of succession planning."
     },
     {
+      "id": "76",
+      "topicTag": "Alsina Ch4 — The Three Enterprise Processes",
+      "front": "What's a concrete example the book gives of a standard budgeting/evaluation assumption breaking down in MCP's actual markets?",
+      "back": "Ramadan timing shifts affect activity and cash flow cyclically in Muslim-majority markets, and standard fiscal-quarter assumptions (built for Western calendars) can misread that as underperformance if not accounted for."
+    },
+    {
+      "id": "75",
+      "topicTag": "Alsina Ch4 — The Three Enterprise Processes",
+      "front": "What's the real tension a budget has to resolve, according to the book?",
+      "back": "Too rigid and it can't absorb real shocks (currency swings, a client failure); too flexible and it stops functioning as a commitment device that actually holds the org accountable. Striking that balance is the operator's judgment call, not a formula."
+    },
+    {
+      "id": "74",
+      "topicTag": "Alsina Ch4 — The Three Enterprise Processes",
+      "front": "Why does the book insist strategy, HR, and budgeting aren't three separate processes, even though they're usually run by different people?",
+      "back": "Each answers a different question about the same target: strategy = where are we going, HR = who takes us there, budgeting = what we do next year to get there. Weakness in one erodes the others even if the rest are strong — together they cover nearly all of a company's business activity."
+    },
+    {
+      "id": "77",
+      "topicTag": "Alsina Ch5 — The Five KPIs",
+      "front": "What are MCP's five KPIs, and what's the one-line read on each?",
+      "back": "Growth (is it organic/durable or leverage-fueled), Profitability (how the company actually makes money — margins, EBITDA), Velocity (how efficiently capital turns over), Customers (are you still in touch with who buys and why), Cash (AR/AP/inventory — do you have the liquidity to fund the plan). Deliberately intertwined, not independent boxes."
+    },
+    {
+      "id": "78",
+      "topicTag": "Alsina Ch5 — The Five KPIs",
+      "front": "What separates \"good growth\" from \"bad growth\" as a KPI, and why does the distinction matter more than the growth number itself?",
+      "back": "Good growth is organic (real productivity/revenue gains) or disciplined inorganic (M&A that adds real capability); bad growth is leverage-fueled expansion with no underlying improvement — the Toys \"R\" Us pattern. A high growth number can mask value destruction if it's debt-funded rather than earned."
+    },
+    {
+      "id": "80",
+      "topicTag": "Alsina Ch5 — The Five KPIs",
+      "front": "What's the correct way to think about what the five KPIs actually do for you?",
+      "back": "They're a first-pass diagnostic that tells you where to look deeper — not the value-creation plan itself. They also function as a shared, explainable language for proposing change to risk-averse portfolio company leadership."
+    },
+    {
+      "id": "79",
+      "topicTag": "Alsina Ch5 — The Five KPIs",
+      "front": "What's the one rule that determines whether a company's capital velocity is actually working for it?",
+      "back": "Velocity must always exceed the cost of that capital being tied up. If the return on turning capital over faster doesn't beat what that capital costs to hold, higher velocity isn't actually creating value."
+    },
+    {
       "id": "51",
       "topicTag": "Damodaran — Synthesis",
       "front": "Trace the full chain from risk-free rate to a DCF valuation.",
@@ -361,6 +403,96 @@
       "topicTag": "Damodaran S6 — Cost of Debt & Capital",
       "front": "Write out the full WACC formula.",
       "back": "WACC = (%Equity × Cost of Equity) + (%Debt × Cost of Debt × (1 − tax rate)) + (%Preferred × Cost of Preferred). Weights at market value; drop the last term if no preferred stock exists."
+    },
+    {
+      "id": "65",
+      "topicTag": "Damodaran S7 — Estimating Cash Flows",
+      "front": "FCFF and FCFE both start from EBIT — where exactly do they diverge, and why does that matter?",
+      "back": "FCFF stays pre-debt throughout (interest and new debt never enter the calculation). FCFE starts from net income (interest already removed) and then explicitly nets out interest paid, principal paid, and new debt raised. This split is what makes FCFF pair correctly with WACC and FCFE pair correctly with cost of equity."
+    },
+    {
+      "id": "64",
+      "topicTag": "Damodaran S7 — Estimating Cash Flows",
+      "front": "Why convert operating lease commitments into debt rather than leaving them as an operating expense?",
+      "back": "A lease is a fixed contractual obligation just like debt service. Reclassifying it (discounting future lease payments at the pre-tax cost of debt) raises the debt ratio, restates operating income upward, and grows invested capital — in a PE context, this reclassification can be used to negotiate a better purchase price."
+    },
+    {
+      "id": "68",
+      "topicTag": "Damodaran S7 — Estimating Cash Flows",
+      "front": "Why does modified working capital exclude cash from current assets and short-term debt from current liabilities?",
+      "back": "Cash isn't an operating asset — it just sits there earning a low but fair return. Short-term debt is a financing item, already captured in the capital structure, not an operating one. Excluding both isolates only the cash genuinely tied up in running the business."
+    },
+    {
+      "id": "66",
+      "topicTag": "Damodaran S7 — Estimating Cash Flows",
+      "front": "Why start a DCF's tax rate at the effective rate and drift toward the marginal rate in later years?",
+      "back": "Effective rate often reflects temporary benefits (accelerated depreciation, credits, carried-forward losses) that expire. Far-out years have no specific reason to assume those benefits still exist, so the defensible assumption is the full marginal rate — and since terminal value dominates most DCFs, this choice affects the majority of the valuation's weight."
+    },
+    {
+      "id": "67",
+      "topicTag": "Damodaran S7 — Estimating Cash Flows",
+      "front": "Why treat R&D as CapEx instead of a same-year expense, and what changes when you do?",
+      "back": "R&D creates benefits over many future years, just like buying a machine — expensing it all in one year understates earnings the same way expensing a factory would. Fix: amortize historical R&D over its useful life, add back the R&D expense, subtract the amortization instead — raising both operating income and invested capital."
+    },
+    {
+      "id": "69",
+      "topicTag": "Damodaran S8 — Estimating Growth",
+      "front": "Growth = reinvestment × return on that reinvestment — why does this split into two different formulas at the equity level (retention × ROE) vs. the firm level (reinvestment rate × ROC)?",
+      "back": "At the equity level, growth = retention ratio × ROE (how much of net income you keep, times how well that reinvested money returns). At the firm level, growth = reinvestment rate × ROC (net CapEx + change in working capital, as a share of after-tax operating income, times return on capital). Same underlying logic, but each pairs with its matching cash flow — mixing them repeats the Session 2 error of pairing the wrong cash flow with the wrong rate."
+    },
+    {
+      "id": "71",
+      "topicTag": "Damodaran S8 — Estimating Growth",
+      "front": "How does growth through efficiency work, and why is it inherently finite?",
+      "back": "If ROC improves without any new capital being added, earnings rise on the same asset base — e.g. ROC moving from 5% to 10% roughly doubles earnings with zero extra reinvestment. It's finite because a company can only become so efficient before hitting a ceiling, unlike reinvestment-driven growth which can continue as long as capital keeps flowing in."
+    },
+    {
+      "id": "73",
+      "topicTag": "Damodaran S8 — Estimating Growth",
+      "front": "In the revenue-growth-and-margin approach, why is backing out the implied ROC a required sanity check rather than optional?",
+      "back": "Growth = reinvestment rate × ROC, so any assumed growth rate and reinvestment rate together imply a specific ROC. If that implied ROC is implausible for the type of business (e.g. 34% for a clinic chain), the assumptions don't hang together even though each one looked reasonable in isolation — the check catches an internally inconsistent model before it quietly distorts the valuation."
+    },
+    {
+      "id": "72",
+      "topicTag": "Damodaran S8 — Estimating Growth",
+      "front": "Why does efficiency-driven growth only meaningfully apply to companies with low current ROC?",
+      "back": "A company already near its ceiling has little room left to improve, so the efficiency term in the growth formula contributes almost nothing. A company with low current ROC has substantial room to improve, so the same operational gain produces a much larger growth contribution."
+    },
+    {
+      "id": "70",
+      "topicTag": "Damodaran S8 — Estimating Growth",
+      "front": "Why does Return on Capital use book value instead of market value, breaking the rule from Session 6?",
+      "back": "Market value already prices in the market's expectations about future growth. Using it to measure how well capital was invested would be circular — you'd be judging investment quality with a number that already assumes the outcome. Book value reflects what was genuinely invested, historically, independent of what the market currently believes about the future."
+    },
+    {
+      "id": "85",
+      "topicTag": "Damodaran S9 — Terminal Value",
+      "front": "In a PE context, what does \"terminal value\" actually become, and what's the key underwriting discipline around it?",
+      "back": "It collapses to a real number: exit EV = Year-5 EBITDA × exit multiple. The discipline is treating multiple expansion (exiting above your entry multiple) the same way Damodaran treats a permanent excess return — it needs real justification, not an assumption; conservative underwriting assumes flat or compressed multiples."
+    },
+    {
+      "id": "83",
+      "topicTag": "Damodaran S9 — Terminal Value",
+      "front": "What's the single biggest judgment call in terminal value, and what's the rule of thumb?",
+      "back": "Whether Return on Capital stays above cost of capital forever, or fades to equal it. Roughly 80% of companies should converge to ROC = cost of capital (no permanent moat); only ~20% justify a modest (2-3%) permanent excess return."
+    },
+    {
+      "id": "82",
+      "topicTag": "Damodaran S9 — Terminal Value",
+      "front": "Why does the risk-free rate act as a cap on the stable growth rate?",
+      "back": "No company can outgrow the entire economy forever. In a mature economy, long-run nominal growth and the risk-free rate tend to converge, so the risk-free rate is Damodaran's practical proxy for that ceiling."
+    },
+    {
+      "id": "81",
+      "topicTag": "Damodaran S9 — Terminal Value",
+      "front": "Why is the \"multiple approach\" to terminal value a methodological inconsistency, not just a shortcut?",
+      "back": "It smuggles relative valuation into an intrinsic DCF — right at the single most influential point in the model — after 8 sessions built specifically to avoid relying on \"what similar companies trade at.\" Common in practice, but not methodologically clean."
+    },
+    {
+      "id": "84",
+      "topicTag": "Damodaran S9 — Terminal Value",
+      "front": "Why should a stable-growth company use a different discount rate than the same company during its high-growth phase?",
+      "back": "A fast-growing company might reasonably carry a beta of 2 and a high cost of capital; once stable, it should look mature — beta drifting toward 1, more comfortable debt, lower cost of capital. The terminal year often needs its own WACC, not the same one carried forward."
     }
   ]
 }
