@@ -81,6 +81,48 @@
       "back": "Velocity must always exceed the cost of that capital being tied up. If the return on turning capital over faster doesn't beat what that capital costs to hold, higher velocity isn't actually creating value."
     },
     {
+      "id": "87",
+      "topicTag": "Alsina Ch6 — The Social Operating System",
+      "front": "What turns a formal meeting into a real accountability mechanism rather than a scheduled conversation?",
+      "back": "Every meeting should end with documented key information and a clear per-person action plan — the meeting itself does nothing without that follow-up artifact. Attendees should think in a cycle of regular accountability, not a one-off timeline where past decisions are forgotten."
+    },
+    {
+      "id": "86",
+      "topicTag": "Alsina Ch6 — The Social Operating System",
+      "front": "Why can't the Social Operating System be a template you copy across portfolio companies, even though every company needs one?",
+      "back": "Same general requirements (communication + coordination patterns that keep execution aligned with strategy), but the actual design has to fit each company's specific culture and structure — it's the mechanism-level equivalent of \"one size fits none.\""
+    },
+    {
+      "id": "88",
+      "topicTag": "Alsina Ch6 — The Social Operating System",
+      "front": "Why does informal, cross-hierarchy interaction matter operationally, not just for morale?",
+      "back": "Casual interaction meaningfully shapes how people work together formally — and specifically, informal exchange across hierarchy levels lets senior and junior people learn from each other in both directions, which formal structure alone doesn't create. Better working environment → genuine mutual respect → better performance."
+    },
+    {
+      "id": "90",
+      "topicTag": "Alsina Ch7 — Following Up",
+      "front": "Walk through the actual loop that drives improved performance in the follow-up process.",
+      "back": "Action plan is set → formal and informal interactions feed observation of individual performance → performance gets reviewed → the action plan gets adjusted. Improvement comes from the loop running continuously, not any single step."
+    },
+    {
+      "id": "91",
+      "topicTag": "Alsina Ch7 — Following Up",
+      "front": "What three dimensions determine how a task in an action plan gets prioritized?",
+      "back": "Priority (impact on company performance, weighed against cost/complexity), urgency (tasks lose most of their value if pushed to the long term), responsibility (someone is clearly accountable, even when execution is delegated downward)."
+    },
+    {
+      "id": "92",
+      "topicTag": "Alsina Ch7 — Following Up",
+      "front": "What's the book's critique of how many PE firms actually operate post-investment?",
+      "back": "Many firms treat portfolio management as purely financial engineering and skip hands-on follow-up — but without a functioning Social Operating System behind it, the action plan doesn't get properly implemented, which inhibits growth and a good exit."
+    },
+    {
+      "id": "89",
+      "topicTag": "Alsina Ch7 — Following Up",
+      "front": "What's the core question the entire follow-up process exists to answer?",
+      "back": "How do you guarantee the value creation plan — and the individual actions behind it — is actually executed, and how do you monitor whether the measures implemented are succeeding or failing?"
+    },
+    {
       "id": "51",
       "topicTag": "Damodaran — Synthesis",
       "front": "Trace the full chain from risk-free rate to a DCF valuation.",
