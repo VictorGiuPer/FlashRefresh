@@ -123,6 +123,30 @@
       "back": "How do you guarantee the value creation plan — and the individual actions behind it — is actually executed, and how do you monitor whether the measures implemented are succeeding or failing?"
     },
     {
+      "id": "96",
+      "topicTag": "Alsina Ch8 — Teaching and Mentoring",
+      "front": "How does the book frame MCP's actual involvement in African portfolio companies, and why?",
+      "back": "Explicitly as partnerships, not takeovers — reflecting real sensitivity to imposing outside/Western systems on local companies, not just a branding choice."
+    },
+    {
+      "id": "95",
+      "topicTag": "Alsina Ch8 — Teaching and Mentoring",
+      "front": "What is \"level-based mentoring\" and why does it matter for reaching an entire organization?",
+      "back": "Communication happens at matched seniority levels — partner↔CEO, VP↔top management, associate↔CFO/middle management, analyst↔middle/lower management — so transformation can reach across the whole org rather than depending entirely on top-down trickle-down."
+    },
+    {
+      "id": "94",
+      "topicTag": "Alsina Ch8 — Teaching and Mentoring",
+      "front": "What specific empirical claim does the book make connecting consulting backgrounds to PE value-creation outcomes?",
+      "back": "Training, mentoring, and incentive alignment with organizational goals — outcomes an outside mentor frequently facilitates — have an observable positive effect on organizations, and PE professionals with consulting backgrounds (outside view, analytical approach) are better positioned to execute value-creation plans requiring significant organizational change."
+    },
+    {
+      "id": "93",
+      "topicTag": "Alsina Ch8 — Teaching and Mentoring",
+      "front": "Why does the book deliberately use \"mentoring\" instead of \"teaching,\" and what precondition does it require to work?",
+      "back": "Mentoring is an ongoing, pedagogical relationship (lateral: job skills, hierarchical: career skills) — but it only produces real positive effects when there's alignment on overall organizational goals first. Without that alignment, an outside mentor's guidance doesn't translate into change."
+    },
+    {
       "id": "51",
       "topicTag": "Damodaran — Synthesis",
       "front": "Trace the full chain from risk-free rate to a DCF valuation.",
